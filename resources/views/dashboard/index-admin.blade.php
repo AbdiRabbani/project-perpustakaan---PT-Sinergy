@@ -9,15 +9,15 @@
         </p>
     </div>
 
-    <div class="books-content">
+    <div class="books-content mb-4">
         <div>
             <div class="logo l-a"></div>
             <div class="books-text">
                 <p>
-                    borrowed
+                    All Book
                 </p>
                 <h2>
-                    350 books
+                    {{$book->count()}} Book
                 </h2>
             </div>
         </div>
@@ -25,29 +25,24 @@
             <div class="logo l-b"></div>
             <div class="books-text">
                 <p>
-                    This week
+                    Borrowed
                 </p>
                 <h2>
-                    68 books
+                    {{$borrow->count()}} Book
                 </h2>
             </div>
         </div>
         <div>
             <div class="logo l-c"></div>
-            <div class="books-text">
+            <div class="books-text ">
                 <p>
-                    This Month
+                    Total user 
                 </p>
                 <h2>
-                    235 books
+                    {{$user->count()}}
                 </h2>
             </div>
         </div>
-    </div>
-    <div class="books-button">
-        <a href="">
-            View Completed Report
-        </a>
     </div>
 </div>
 
@@ -96,18 +91,19 @@
                     </td>
                     <td>{{$row->book->name}}</td>
                     <td>
-                    {{$row->start_date}} until {{$row->end_date}}
+                        {{$row->start_date}} until {{$row->end_date}}
                     </td>
                     <td>
                         <div>
-                            <img src="{{asset('/storage/images/profile/' .$row->book->image)}}" class="img-borrow" alt="">
+                            <img src="{{asset('/storage/images/profile/' .$row->book->image)}}" class="img-borrow"
+                                alt="">
                         </div>
                     </td>
                     <td>
                         <form action="{{route('borrow.destroy', $row->id)}}" method="post">
                             @csrf
                             {{method_field('delete')}}
-                            <button class="btn btn-success">Already returned</button>
+                            <button class="btn btn-success">returned</button>
                         </form>
                     </td>
                 </tr>

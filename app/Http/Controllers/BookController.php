@@ -75,7 +75,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $borrow = Borrow::Where('id_user', Auth()->user()->id)->get()->all();
+        $borrow = Borrow::Where('id_user', Auth()->user()->id )->where('id_book', $id)->get()->all();
         $borrowed = Borrow::Where('id_book', $id)->get()->all();
         $book = Book::find($id);
         return view('book.detail', compact('book', 'borrow', 'borrowed'));

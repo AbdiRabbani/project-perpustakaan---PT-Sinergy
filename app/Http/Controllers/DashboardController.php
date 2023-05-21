@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Book;
 use App\Borrow;
+use App\User;
 
 use Auth;
 
@@ -21,9 +22,10 @@ class DashboardController extends Controller
     {
         $book = Book::all();
         $borrow = Borrow::all();
+        $user = User::all();
 
         if(Auth::check()) {
-            return view('dashboard.index-admin', compact('book', 'borrow'));   
+            return view('dashboard.index-admin', compact('book', 'borrow', 'user'));   
         } else {
             return redirect('/login');
         }
